@@ -56,18 +56,25 @@ app.get('/', (c) => {
 			<meta name="theme-color" content="#FACEFA">
 			<title>Simple URL Shortener</title>
 		</head>
-            <h1>URL短縮サービス</h1>
+            <h1>Simple URL Shortener</h1>
             <div>
-                <span>短縮したいURLを入力してください</span>
+                <span>ながーーーいURLを短縮できます</span>
             </div>
             <form action='/shorten' method='post'>
                 <div>
                     <label>URL</label>
                     <input type='url' name='url' required />
-                    <button>短縮</button>
+                    <button>短縮!</button>
                 </div>
             </form>
         </html>
+		<style>
+			html {
+				display: flex;
+				justify-content: center;
+				text-align: center;
+			}
+		</style>
     `)
 })
 
@@ -90,13 +97,20 @@ app.post('/shorten', async (c) => {
 	const { url } = body
 	// const { url } = await c.req.json<{ url: string }>()
 	if (!url || typeof url !="string") {
-		return c.html('<p>無効なURLが入力されました</p>', 400)
+		return c.html('<p>無効なURLが入力されました。</p>', 400)
 	}
 	const { key } = await shorten(c.env.SHORT_URLS, url)
 	// return c.json({ key, url })
 	return c.html(`
 	<h1>生成しました!</h1>
 	<p>${rooturl}/${key} - リダイレクト先: ${url}</p>
+	<style>
+		html {
+			display: flex;
+			justify-content: center;
+			text-align: center;
+		}
+	</style>
 	`)
 })
 
