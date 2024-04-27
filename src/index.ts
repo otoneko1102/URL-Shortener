@@ -49,6 +49,13 @@ app.get('/', (c) => {
 app.get('/', (c) => {
     return c.html(`
         <html>
+		<head>
+			<meta charset="UTF-8" />
+			<meta name="description" content="ながーーーいURLを短縮っ!" />
+			<meta property="og:site_name" content="r.a1z.uk">
+			<meta name="theme-color" content="#FACEFA">
+			<title>Simple URL Shortener</title>
+		</head>
             <h1>URL短縮サービス</h1>
             <div>
                 <span>短縮したいURLを入力してください</span>
