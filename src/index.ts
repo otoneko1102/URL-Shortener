@@ -103,7 +103,8 @@ app.post('/shorten', async (c) => {
 	// return c.json({ key, url })
 	return c.html(`
 	<h1>生成しました!</h1>
-	<p>${rooturl}/${key} - リダイレクト先: ${url}</p>
+	<p id="url">${rooturl}/${key}</p>
+	<p>リダイレクト先: ${url}</p>
 	<style>
 		html {
 			display: flex;
