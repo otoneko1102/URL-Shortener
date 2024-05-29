@@ -16,36 +16,6 @@ const app = new Hono<{ Bindings: Env }>()
 
 const rooturl = 'https://r.a1z.uk'
 
-/*
-app.get('/', (c) => {
-  return c.html(`<!DOCTYPE html>
-<html>
-	<title>URL Shortener</title>
-	<body>
-		<h1>Simple URL Shortener</h1>
-		<div class="howto">
-			<h2>How to use?</h2>
-			<ul>
-				<li>(作成)<code>/api/links</code>にPOSTする</li>
-				<p>リクエスト、レスポンスの内容は共にjson形式です。</p>
-				<p><code>{"url": "https://example.com"}</code>のようにしてPOSTしてください。</p>
-
-				<li>(使用)<code>/短縮リンク</code>にアクセスする</li>
-				<p>生成した短縮リンクにアクセスすると自動でリダイレクトされます。</p>
-			</ul>
-		</div>
-	</body>
-</html>
-
-<style>
-	html {
-		background-color: antiquewhite;
-	}
-</style>
-`)
-})
-*/
-
 app.get('/', (c) => {
     return c.html(`
         <html>
