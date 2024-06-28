@@ -24,55 +24,26 @@ app.get('/', (c) => {
         <meta property="og:site_name" content="oto.pet">
         <meta name="theme-color" content="#FACEFA">
         <title>Simple URL Shortener</title>
-        <style>
-          html {
-            display: flex;
-            justify-content: center;
-            text-align: center;
-          }
-          h1 {
-            font-size: 1.5rem;
-          }
-          form {
-            margin-top: 1rem;
-          }
-          input[type="url"] {
-            width: 80%;
-            padding: 0.5rem;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-          }
-          button {
-            margin-left: 0.5rem;
-            padding: 0.5rem 1rem;
-            font-size: 1rem;
-            cursor: pointer;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 4px;
-          }
-          button:hover {
-            background-color: #0056b3;
-          }
-          .result {
-            margin-top: 1rem;
-          }
-        </style>
       </head>
-      <body>
-        <h1>Simple URL Shortener</h1>
-        <p>ながーーーいURLを短縮できます</p>
-        <form action='/shorten' method='post'>
-          <label for="url">URL</label><br>
-          <input type='url' id="url" name='url' required><br>
-          <button type="submit">短縮!</button>
-        </form>
-        <div class="result"></div>
-      </body>
+      <h1>Simple URL Shortener</h1>
+      <div>
+        <span>ながーーーいURLを短縮できます</span>
+      </div>
+      <form action='/shorten' method='post'>
+        <div>
+          <label>URL</label>
+          <input type='url' name='url' required />
+          <button>短縮!</button>
+        </div>
+      </form>
     </html>
+    <style>
+      html {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+      }
+    </style>
   `)
 })
 
@@ -98,39 +69,18 @@ app.post('/shorten', async (c) => {
     return c.html('<p>無効なURLが入力されました。</p>', 400)
   }
   const { key } = await shorten(c.env.SHORT_URLS, url)
+  // return c.json({ key, url })
   return c.html(`
-    <html>
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="description" content="URLを短縮します" />
-        <meta property="og:site_name" content="oto.pet">
-        <meta name="theme-color" content="#FACEFA">
-        <title>URL短縮完了</title>
-        <style>
-          html {
-            display: flex;
-            justify-content: center;
-            text-align: center;
-          }
-          h1 {
-            font-size: 1.5rem;
-          }
-          p {
-            font-size: 1rem;
-          }
-          .url {
-            margin-top: 1rem;
-            font-size: 1.2rem;
-            color: #007BFF;
-          }
-        </style>
-      </head>
-      <body>
-        <h1>生成しました!</h1>
-        <p>リダイレクト先: ${url}</p>
-        <p class="url">${rooturl}/${key}</p>
-      </body>
-    </html>
+    <h1>生成しました!</h1>
+    <p id="url">${rooturl}/${key}</p>
+    <p>リダイレクト先: ${url}</p>
+    <style>
+      html {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+      }
+    </style>
   `)
 })
 
